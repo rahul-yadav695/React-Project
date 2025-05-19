@@ -69,17 +69,17 @@ function Product(props) {
         <h1 className='text-4xl font-bold'>Product List</h1>
 
         {<div className='flex gap-1'>
-         {mode==="light"? <button onClick={light} className='text-2xl cursor-pointer'><IoMdSunny /></button>:
-          <button onClick={light} className='text-2xl cursor-pointer'><IoMoon /></button>}
-        </div> }
- 
+          {mode === "light" ? <button onClick={light} className='text-2xl cursor-pointer'><IoMdSunny /></button> :
+            <button onClick={light} className='text-2xl cursor-pointer'><IoMoon /></button>}
+        </div>}
+
 
         <button onClick={() => setcart(value => (!value))} className='flex'>
           <FaCartShopping className='text-5xl' />
 
           <span className='text-xs bg-red-700 w-5 h-5 rounded-2xl'>{cartItems.length}</span>
         </button>
-        <button className='bg-red-600 text-white border-red   p-1 rounded ' onClick={ props.logout}>Logout</button>
+        <button className='bg-red-600 text-white border-red   p-1 rounded ' onClick={props.logout}>Logout</button>
 
         <div>
           {cartvalue && <div className='absolute top-20 right-5 bg-gray-300 p-2 '>
@@ -89,9 +89,9 @@ function Product(props) {
                 <b>Price:-{totalPrice}</b>
               </div>
               <div className='flex mt-10 gap-10 text-2xl'>
-                <button onClick={() =>handleclick} className='cursor-pointer'>+</button>
+                <button onClick={() => handleclick} className='cursor-pointer'>+</button>
                 <button className='cursor-pointer'></button>
-                <button onClick={() =>handleclick2} className='cursor-pointer'>-</button>
+                <button onClick={() => handleclick2} className='cursor-pointer'>-</button>
               </div>
 
             </div>
@@ -134,4 +134,3 @@ export default Product;
 
 
 
- 

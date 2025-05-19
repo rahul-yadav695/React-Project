@@ -1,25 +1,29 @@
 @import "tailwindcss";
- 
-.btnbtn{
+
+.btnbtn {
     display: flex;
-    justify-content: end; 
+    justify-content: end;
 }
-.bord{
+
+.bord {
     width: 50px;
     height: 30px;
     border: 1px solid red;
     font-size: 1.2rem;
 }
-.bord:hover{
+
+.bord:hover {
     background-color: red;
-    color: green;border-radius: 50px;
+    color: green;
+    border-radius: 50px;
     /* border: none !important; */
 }
+
 .raaj {
-    transition: all 3s ease; 
+    transition: all 3s ease;
 }
 
-.raaj:hover { 
+.raaj:hover {
     width: 200px;
     height: 200px;
     background-color: coral;
@@ -29,4 +33,3 @@
     justify-content: center;
     align-items: center;
 }
- 
