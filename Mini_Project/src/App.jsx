@@ -3,6 +3,7 @@ import { IoLogIn } from 'react-icons/io5'
 import Product from './Component/Product'
 import Timer from './Component/Timer'
 import SigninPage from './Component/Signin'
+import Apis from './Component/Apis'
 function App() {
 
   return (
@@ -10,7 +11,8 @@ function App() {
       {/* <Header /> */}
       {/* <Product/>  */}
       {/* <Timer /> */}
-      <SigninPage />
+      {/* <SigninPage /> */}
+      <Apis />
     </>
   )
 }
