@@ -43,20 +43,22 @@ function SigninPage() {
 
     return (
         <>
-            <Tostifiy error={error} />
-            {login === false ? <form className='flex justify-center raj' onSubmit={reloadStop}>
-                <div className='w-80 h-70 border-4 mt-20'>
-                    <div className='flex justify-center mt-20'>
-                        <input type="text" autoFocus placeholder='Enter Yor text' value={email} onChange={(e) => setEmail(e.target.value)} className='w-70 h-10 border-2 border-amber-400 ' />
+            <div className=''>
+                <Tostifiy error={error} />
+                {login === false ? <form className='flex justify-center shadow-amber-800' onSubmit={reloadStop}>
+                    <div className='w-100 h-100 border-4 mt-20'>
+                        <div className='flex justify-center mt-20'>
+                            <input type="text" autoFocus placeholder='Enter Yor text' value={email} onChange={(e) => setEmail(e.target.value)} className='w-90 h-10 border-2 border-amber-400 ' />
+                        </div>
+                        <div className='flex justify-center mt-8'>
+                            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Enter Yor Password' className='w-90 h-10 border-2 border-green-400 ' />
+                        </div>
+                        <div className='flex justify-center mt-8'>
+                            <button onClick={handleLogin} className='w-60 h-10  bg-emerald-400'>Click Me</button>
+                        </div>
                     </div>
-                    <div className='flex justify-center mt-8'>
-                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Enter Yor Password' className='w-70 h-10 border-2 border-green-400 ' />
-                    </div>
-                    <div className='flex justify-center mt-8'>
-                        <button onClick={handleLogin} className='w-60 h-10  bg-emerald-400'>Click Me</button>
-                    </div>
-                </div>
-            </form> : <Product logout={logout} />}
+                </form> : <Product logout={logout} />}
+            </div>
         </>
     )
 }
