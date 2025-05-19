@@ -1,0 +1,32 @@
+@import "tailwindcss";
+ 
+.btnbtn{
+    display: flex;
+    justify-content: end; 
+}
+.bord{
+    width: 50px;
+    height: 30px;
+    border: 1px solid red;
+    font-size: 1.2rem;
+}
+.bord:hover{
+    background-color: red;
+    color: green;border-radius: 50px;
+    /* border: none !important; */
+}
+.raaj {
+    transition: all 3s ease; 
+}
+
+.raaj:hover { 
+    width: 200px;
+    height: 200px;
+    background-color: coral;
+    transform: scale(1.1);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
