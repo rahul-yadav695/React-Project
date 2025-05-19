@@ -4,15 +4,23 @@ import Product from './Component/Product'
 import Timer from './Component/Timer'
 import SigninPage from './Component/Signin'
 import Apis from './Component/Apis'
+import { useEffect, useState } from 'react'
 function App() {
+  const [isLogin, setLogin] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    console.log(token)
+    setLogin(token)
+  }, [isLogin])
 
   return (
     <>
       {/* <Header /> */}
       {/* <Product/>  */}
       {/* <Timer /> */}
-      {/* <SigninPage /> */}
-      <Apis />
+      {!isLogin && <SigninPage />}
+      {isLogin && <Apis />}
     </>
   )
 }

@@ -27,8 +27,10 @@ function SigninPage() {
             timers("please correct usrname and password")
             setEmail("")
             setPassword("")
+
         } else {
-            setLogin(true)
+            // setLogin(true)
+            localStorage.setItem("token", true)
             // setError("congrass you have login succesfully done thank you !")
             timers("congrass you have login succesfully done thank you !")
             setEmail("")
