@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Tostifiy = (props) => {
-    return (
-        <div>
-            <div className='absolute bg-red-500 text-white top-1.5 right-2 rounded'>
-                <p>{props.error}<ToastContainer /></p>
-            </div>
-        </div>
-    )
-}
+const Tostifiy = ({ error }) => {
+    useEffect(() => {
+        if (error) {
+            toast.error(error, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }, [error]);
 
-export default Tostifiy
+    return <ToastContainer />;
+};
+
+export default Tostifiy;
