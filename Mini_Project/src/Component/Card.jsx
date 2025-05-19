@@ -3,29 +3,6 @@ import { product } from '../data/product'
 
 function Card(props) {
 
-
-    // function filternam(index) {
-    //     const data = props.add.filter((i,value)=>{
-    //         if(i!==index){
-    //             return true ;
-    //         }else{
-    //             return false ;
-    //         }
-    //         return data ;
-    //     }) 
-    // }
-
-
-    //  const [cartItemsval , setitems] = useState()
-
-    //  function remove (index) {
-    //     let data = cartItemsval.filter((i) => {
-    //         if(i !== index){
-    //             setitems(data)
-    //         }
-    //     })
-    //  }
-
     function removecard(id) {
         const data = props.add.filter((item) => {
             return item.id !== id;
@@ -34,7 +11,7 @@ function Card(props) {
     }
 
     return (
-        <>
+        <> 
             <div className=''>
                 {props.add.map((val, i) =>
                     <div key={i} className='flex gap-10 mt-10 mb-0'>
