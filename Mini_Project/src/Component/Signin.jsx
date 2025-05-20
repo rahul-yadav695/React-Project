@@ -60,9 +60,7 @@ function SigninPage() {
                         </div>
                     </div>
                 </form> : <Product logout={logout} />}
-            </div>
-
-
+            </div> 
  
         </>
     )
