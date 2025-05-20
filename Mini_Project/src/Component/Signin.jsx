@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Product from './Product';
-import Tostifiy from './Tostifiy';
+// import Tostifiy from './Tostifiy';
+ import { ToastContainer, toast } from 'react-toastify';
 
 function SigninPage() {
     const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ function SigninPage() {
     const [login, setLogin] = useState(false);
     const [error, setError] = useState("")
 
-
+ const notify = () => toast("Wow so easy!");
     const timers = (msg) => {
         setError(msg)
         setTimeout(() => {
@@ -25,6 +26,7 @@ function SigninPage() {
 
             // setError("pleasw correct usrname and password")
             timers("please correct usrname and password")
+            notify();
             setEmail("")
             setPassword("")
 
@@ -46,7 +48,7 @@ function SigninPage() {
     return (
         <>
             <div className=''>
-                <Tostifiy error={error} />
+                {/* <Tostifiy error={error} /> */}
                 {login === false ? <form className='flex justify-center shadow-amber-800' onSubmit={reloadStop}>
                     <div className='w-100 h-100 border-4 mt-20'>
                         <div className='flex justify-center mt-20'>
@@ -60,6 +62,7 @@ function SigninPage() {
                         </div>
                     </div>
                 </form> : <Product logout={logout} />}
+                  <ToastContainer />
             </div> 
  
         </>

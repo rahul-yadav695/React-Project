@@ -28,25 +28,7 @@ function Product(props) {
   }
 
   const totalPrice = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
-
-  // const handleclick = (id) => {
-  //   const updated = cartItems.map(item =>
-  //     item.id === id ? { ...item, count: item.count + 1 } : item
-  //   );
-  //   setCartItems(updated);
-  // };
-
-  // const handleclick2 = (id) => {
-  //   const ubgreat = cartItems.map((them) => 
-  //     them.id === id ? {...them , count: them.count - 1} : them
-  //   );
-  //   setcounter(ubgreat)
-  // }
-
-  //  const light = () => {
-  //   setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  // };
-
+ 
 
   const light = () => {
     if (mode === "light") {
