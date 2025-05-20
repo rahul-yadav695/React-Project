@@ -89,12 +89,7 @@ function Product(props) {
             <div className='flex justify-around'>
               <div className='mt-10 flex gap-20'>
                 <b>Price:-{totalPrice}</b>
-              </div>
-              {/* <div className='flex mt-10 gap-10 text-2xl'>
-                <button onClick={() => handleclick} className='cursor-pointer'>+</button>
-                <button className='cursor-pointer'></button>
-                <button onClick={() => handleclick2} className='cursor-pointer'>-</button>
-              </div> */}
+              </div> 
 
             </div>
           </div>}

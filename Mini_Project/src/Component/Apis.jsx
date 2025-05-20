@@ -30,8 +30,8 @@ const Apis = () => {
 
     return (
         <div className='grid grid-cols-3 gap-10 p-5 '>
-            {posts.map((post) => (
-                <div className='border-2 p-3 mt-5 bg-blue-100'>
+            {posts.map((post, key) => (
+                <div key={key} className='border-2 p-3 mt-5 bg-blue-100'>
                     <h4>{post.title}</h4>
                     <p>{post.body}</p>
                 </div>
