@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Product from './Product';
 // import Tostifiy from './Tostifiy';
- import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 function SigninPage() {
     const [email, setEmail] = useState('');
@@ -9,7 +9,9 @@ function SigninPage() {
     const [login, setLogin] = useState(false);
     const [error, setError] = useState("")
 
- const notify = () => toast("Wow so easy!");
+    const notify = () => toast("Wow so easy!");
+
+
     const timers = (msg) => {
         setError(msg)
         setTimeout(() => {
@@ -47,24 +49,43 @@ function SigninPage() {
 
     return (
         <>
-            <div className=''>
-                {/* <Tostifiy error={error} /> */}
-                {login === false ? <form className='flex justify-center shadow-amber-800' onSubmit={reloadStop}>
-                    <div className='w-100 h-100 border-4 mt-20'>
-                        <div className='flex justify-center mt-20'>
-                            <input type="text" autoFocus placeholder='Enter Yor text' value={email} onChange={(e) => setEmail(e.target.value)} className='w-90 h-10 border-2 border-amber-400 ' />
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+                {login === false ? (
+                    <form
+                        className="w-full max-w-md bg-white shadow-lg rounded-xl p-8"
+                        onSubmit={reloadStop}>
+                            
+                        <h2 className="text-2xl font-bold text-center text-emerald-600 mb-6">
+                            Login Form
+                        </h2>
+
+                        <div className="mb-4">
+                            <input type="text" autoFocus placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-12 px-4 border border-amber-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                            />
                         </div>
-                        <div className='flex justify-center mt-8'>
-                            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Enter Yor Password' className='w-90 h-10 border-2 border-green-400 ' />
+
+                        <div className="mb-6">
+                            <input type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full h-12 px-4 border border-green-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            />
                         </div>
-                        <div className='flex justify-center mt-8'>
-                            <button onClick={handleLogin} className='w-60 h-10  bg-emerald-400'>Click Me</button>
+
+                        <div className="flex justify-center">
+                            <button
+                                type="button"
+                                onClick={handleLogin}
+                                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
+                            >
+                                Click Me
+                            </button>
                         </div>
-                    </div>
-                </form> : <Product logout={logout} />}
-                  <ToastContainer />
-            </div> 
- 
+                    </form>
+                ) : (
+                    <Product logout={logout} />
+                )}
+
+                <ToastContainer />
+            </div>
+
         </>
     )
 }
