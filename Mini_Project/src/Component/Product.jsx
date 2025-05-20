@@ -28,7 +28,7 @@ function Product(props) {
   }
 
   const totalPrice = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
- 
+
 
   const light = () => {
     if (mode === "light") {
@@ -71,7 +71,7 @@ function Product(props) {
             <div className='flex justify-around'>
               <div className='mt-10 flex gap-20'>
                 <b>Price:-{totalPrice}</b>
-              </div> 
+              </div>
 
             </div>
           </div>}

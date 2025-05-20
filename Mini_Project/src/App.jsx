@@ -19,10 +19,10 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      {/* <Product/>  */}
+      <Product/> 
       {/* <Timer /> */}
-      {!isLogin && <SigninPage />}
-      {isLogin && <Apis />}
+      {/* {!isLogin && <SigninPage />}
+      {isLogin && <Apis />} */}
     </>
   )
 }

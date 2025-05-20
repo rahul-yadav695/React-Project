@@ -1,14 +1,14 @@
 import React from 'react'
-// import Hader from './componets/Hader'
-// import Post1 from './componets/Post1'
-// import Post2 from './componets/Post2'
-// import Post3 from './componets/Post3'
-// import SigninPage from './componets/SigninPage'
+import Hader from './componets/Hader'
+import Post1 from './componets/Post1'
+import Post2 from './componets/Post2'
+import Post3 from './componets/Post3'
+import SigninPage from './componets/SigninPage'
 
-// import Header from './componets/Header'
+import Header from './componets/Header'
 
-// import User from './componets/User'
-// import Welcome from './componets/welcome'
+import User from './componets/User'
+import Welcome from './componets/welcome'
 import ProductCard from './componets/ProductCard'
 
 function App() {
@@ -57,10 +57,10 @@ function App() {
 
       {/* <User user= {user}/> */}
 
-      {/* <Header/>  */}
+      <Header/> 
 
-        {/* <Hader />
-      <div className='grid grid-cols-3'>
+        <Hader />
+      {/* <div className='grid grid-cols-3'>
         <Post1 img="https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg" title="First title" />
 
         <Post2 img="https://i.pinimg.com/736x/2b/30/e9/2b30e9476db1ec0823c7142e0e5ef75a.jpg" title="Second Images" />
@@ -70,7 +70,7 @@ function App() {
 
       <SigninPage /> */}
 
-      <Hader />
+      {/* <Hader /> */}
     </div>
   )
 }
