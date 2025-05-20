@@ -61,6 +61,50 @@ function SigninPage() {
                     </div>
                 </form> : <Product logout={logout} />}
             </div>
+
+
+
+
+            {/* <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <Tostifiy error={error} /> 
+                {login === false ? (
+                    <form className="bg-white shadow-lg rounded-xl p-10 w-full max-w-md" onSubmit={reloadStop}>
+                        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
+
+                        <div className="mb-4">
+                            <input
+                                type="text"
+                                autoFocus
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="w-full px-4 py-2 border border-amber-400 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300"
+                            />
+                        </div>
+
+                        <div className="mb-6">
+                            <input
+                                type="password"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="w-full px-4 py-2 border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            onClick={handleLogin}
+                            className="w-full py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition"
+                        >
+                            Log In
+                        </button>
+                    </form>
+                ) : (
+                    <Product logout={logout} />
+                )}
+            </div> */}
+
         </>
     )
 }
