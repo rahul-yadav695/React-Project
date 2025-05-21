@@ -26,13 +26,16 @@ function Product(props) {
   // const addcart = (product) => {
   //   setCartItems([...cartItems, product])
   // }
-  
+
   // const AddtoCart = (product) => {
   //   setCartItems([...cartItems , product])
   // }
 
   const totalPrice = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+ 
+  const displayPrice = totalPrice.toLocaleString("en-IN");
 
+  
 
   const light = () => {
     if (mode === "light") {
@@ -75,7 +78,7 @@ function Product(props) {
             <Card add={cartItems} setadd={setCartItems} />
             <div className='flex justify-around'>
               <div className='mt-10 flex gap-20'>
-                <b>Price:-{totalPrice}</b>
+                <b>Price₹:-{displayPrice}</b>
               </div>
 
             </div>
@@ -102,13 +105,16 @@ function Product(props) {
             <img src={item.img} alt={item.name} className='w-full h-48 object-contain' />
             <p className='text-xl font-semibold mt-2'>{item.name}</p>
             <p className='text-gray-500 '>{item.price}</p>
-            <button onClick={()=>{
-              if(!cartItems.find((items)=>items.id===item.id)){
-                let newCart = [...cartItems,item];
-                setCartItems(newCart)
+            <button onClick={() => {
+              const isalereadysaved = cartItems.find((cart)=> cart.id === item.id)
+
+              if(!isalereadysaved){
+                const newcart = [...cartItems , item]
+                setCartItems(newcart)
               }else{
-                alert("product is already seved")
+                alert('')
               }
+
             }} className='mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition'>
               {item.btn}
             </button>
@@ -116,14 +122,12 @@ function Product(props) {
             {/* <button onClick={() => addmain(item)} className='bg-amber-400'>{item.btn}</button> */}
           </div>
         ))}
-      </div>
-
-    </> 
+      </div> 
+    </>
   );
 }
 
 export default Product;
 
 
-
-
+ 

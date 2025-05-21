@@ -10,19 +10,20 @@ import { useEffect, useState } from 'react'
 function App() {
   const [isLogin, setLogin] = useState(false)
 
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    console.log(token)
-    setLogin(token)
-  }, [isLogin])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   console.log(token)
+  //   setLogin(token)
+  // }, [isLogin])
 
   return (
     <>
       {/* <Header /> */}
-      <Product/> 
+      {/* <Product/>  */}
       {/* <Timer /> */}
       {/* {!isLogin && <SigninPage />}
       {isLogin && <Apis />} */}
+      <SigninPage />
     </>
   )
 }

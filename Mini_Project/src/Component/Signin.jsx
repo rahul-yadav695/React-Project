@@ -50,8 +50,7 @@ function SigninPage() {
     return (
         <>
             <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-                {login === false ? (
-                    <form
+                {login === false ? <div
                         className="w-full max-w-md bg-white shadow-lg rounded-xl p-8"
                         onSubmit={reloadStop}>
                             
@@ -78,10 +77,9 @@ function SigninPage() {
                                 Click Me
                             </button>
                         </div>
-                    </form>
-                ) : (
-                    <Product logout={logout} />
-                )}
+                    </div>
+                 : <Product logout={logout} />
+                }
 
                 <ToastContainer />
             </div>
