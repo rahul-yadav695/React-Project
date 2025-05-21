@@ -23,9 +23,13 @@ function Product(props) {
     }
   };
 
-  const addcart = (product) => {
-    setCartItems([...cartItems, product])
-  }
+  // const addcart = (product) => {
+  //   setCartItems([...cartItems, product])
+  // }
+  
+  // const AddtoCart = (product) => {
+  //   setCartItems([...cartItems , product])
+  // }
 
   const totalPrice = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
 
@@ -42,6 +46,7 @@ function Product(props) {
       console.log("light black")
       setMode("light");
     }
+
   };
 
 
@@ -97,14 +102,23 @@ function Product(props) {
             <img src={item.img} alt={item.name} className='w-full h-48 object-contain' />
             <p className='text-xl font-semibold mt-2'>{item.name}</p>
             <p className='text-gray-500 '>{item.price}</p>
-            <button onClick={() => addcart(item)} className='mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition'>
+            <button onClick={()=>{
+              if(!cartItems.find((items)=>items.id===item.id)){
+                let newCart = [...cartItems,item];
+                setCartItems(newCart)
+              }else{
+                alert("product is already seved")
+              }
+            }} className='mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition'>
               {item.btn}
             </button>
+
+            {/* <button onClick={() => addmain(item)} className='bg-amber-400'>{item.btn}</button> */}
           </div>
         ))}
       </div>
 
-    </>
+    </> 
   );
 }
 
