@@ -118,7 +118,7 @@ function Product(props) {
             }} className='mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition'>
               {item.btn}
             </button>
-
+ 
             {/* <button onClick={() => addmain(item)} className='bg-amber-400'>{item.btn}</button> */}
           </div>
         ))}
