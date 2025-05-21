@@ -112,7 +112,7 @@ function Product(props) {
                 const newcart = [...cartItems , item]
                 setCartItems(newcart)
               }else{
-                alert('')
+                alert('code is already saved !')
               }
 
             }} className='mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition'>
