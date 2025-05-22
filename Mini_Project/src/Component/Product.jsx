@@ -84,7 +84,7 @@ function Product(props) {
             </div>
           </div>}
         </div>
-      </header>
+      </header> 
 
       <div className='flex justify-center mt-6'>
         <select
