@@ -45,11 +45,7 @@ function SigninPage() {
                     )}
 
                     <div className="mb-4">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                        <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}
                             className="w-full h-12 px-4 border border-amber-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
                         />
                     </div>

@@ -11,15 +11,21 @@ function Product({ logout }) {
   const [cartOpen, setCartOpen] = useState(false);
   const [mode, setMode] = useState('light');
 
-  // Theme toggle
+  
   const toggleTheme = () => {
-    const isLight = mode === 'light';
-    document.body.style.backgroundColor = isLight ? 'black' : 'white';
-    document.body.style.color = isLight ? 'white' : 'black';
-    setMode(isLight ? 'dark' : 'light');
+    if (mode === 'light') {
+      document.body.style.backgroundColor = 'black';
+      document.body.style.color = 'white';
+      document.body.style.transition = 'background-color 2.5s ease';
+      setMode('dark');
+    } else {
+      document.body.style.backgroundColor = 'white';
+      document.body.style.color = 'black';
+      document.body.style.transition = 'background-color 2.5s ease';
+      setMode('light');
+    }
   };
 
-  // Category filter
   const filterCategory = (category) => {
     setFilteredProducts(
       category === 'All'
@@ -28,14 +34,12 @@ function Product({ logout }) {
     );
   };
 
-  // Total cart price
   const totalPrice = cartItems.reduce(
     (total, item) => total + Number(item.price),
     0
   );
   const displayPrice = totalPrice.toLocaleString('en-IN');
 
-  // Add to cart
   const handleAddToCart = (item) => {
     const exists = cartItems.some((cart) => cart.id === item.id);
     if (!exists) {
@@ -46,11 +50,10 @@ function Product({ logout }) {
   };
 
   return (
-    <>
-      <header className="flex justify-between bg-amber-500 p-3">
+    <div className="">
+      <header className="flex justify-between items-center bg-amber-500 p-3 shadow-md">
         <h1 className="text-4xl font-bold">Product List</h1>
-
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <button onClick={toggleTheme} className="text-2xl">
             {mode === 'light' ? <IoMdSunny /> : <IoMoon />}
           </button>
@@ -67,12 +70,8 @@ function Product({ logout }) {
             )}
           </button>
 
-          <button
-            className="bg-red-600 text-white px-3 py-1 rounded"
-            onClick={logout}
-          >
-            Logout
-          </button>
+          <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+            onClick={logout}> Logout </button>
         </div>
       </header>
 
@@ -100,25 +99,20 @@ function Product({ logout }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-10 p-4">
         {filteredProducts.map((item) => (
-          <div key={item.id} className="border p-5 shadow rounded">
-            <img
-              src={item.img}
-              alt={item.name}
-              className="w-full h-48 object-contain"
-            />
+          <div key={item.id} className="border p-5 shadow rounded bg-white dark:bg-gray-700">
+            <img src={item.img} alt={item.name} className="w-full h-70 object-contain" />
             <p className="text-xl font-semibold mt-2">{item.name}</p>
             <p className="text-gray-500">₹{item.price}</p>
-            <button
-              onClick={() => handleAddToCart(item)}
-              className="mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition"
+            <button onClick={() => handleAddToCart(item)} className="mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition"
             >
               {item.btn}
             </button>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
+
 }
 
 export default Product;
