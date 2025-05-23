@@ -11,18 +11,15 @@ function Product({ logout }) {
   const [cartOpen, setCartOpen] = useState(false);
   const [mode, setMode] = useState('light');
 
+  // Theme toggle
   const toggleTheme = () => {
-    if (mode === 'light') {
-      document.body.style.backgroundColor = 'black';
-      document.body.style.color = 'white';
-      setMode('dark');
-    } else {
-      document.body.style.backgroundColor = 'white';
-      document.body.style.color = 'black';
-      setMode('light');
-    }
+    const isLight = mode === 'light';
+    document.body.style.backgroundColor = isLight ? 'black' : 'white';
+    document.body.style.color = isLight ? 'white' : 'black';
+    setMode(isLight ? 'dark' : 'light');
   };
 
+  // Category filter
   const filterCategory = (category) => {
     setFilteredProducts(
       category === 'All'
@@ -31,15 +28,16 @@ function Product({ logout }) {
     );
   };
 
+  // Total cart price
   const totalPrice = cartItems.reduce(
-    (total, item) => total + parseFloat(item.price),
+    (total, item) => total + Number(item.price),
     0
   );
-
   const displayPrice = totalPrice.toLocaleString('en-IN');
 
+  // Add to cart
   const handleAddToCart = (item) => {
-    const exists = cartItems.find((cart) => cart.id === item.id);
+    const exists = cartItems.some((cart) => cart.id === item.id);
     if (!exists) {
       setCartItems([...cartItems, item]);
     } else {
@@ -101,8 +99,8 @@ function Product({ logout }) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-10 p-4">
-        {filteredProducts.map((item, index) => (
-          <div key={index} className="border p-5 shadow rounded">
+        {filteredProducts.map((item) => (
+          <div key={item.id} className="border p-5 shadow rounded">
             <img
               src={item.img}
               alt={item.name}
@@ -123,4 +121,4 @@ function Product({ logout }) {
   );
 }
 
-export default Product; 
+export default Product;
