@@ -5,129 +5,122 @@ import Card from './Card';
 import { IoMdSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
-
-
-function Product(props) {
+function Product({ logout }) {
   const [filteredProducts, setFilteredProducts] = useState(product);
   const [cartItems, setCartItems] = useState([]);
-  const [cartvalue, setcart] = useState(false)
-  // const [counter, setcounter] = useState(0);
+  const [cartOpen, setCartOpen] = useState(false);
   const [mode, setMode] = useState('light');
 
+  const toggleTheme = () => {
+    if (mode === 'light') {
+      document.body.style.backgroundColor = 'black';
+      document.body.style.color = 'white';
+      setMode('dark');
+    } else {
+      document.body.style.backgroundColor = 'white';
+      document.body.style.color = 'black';
+      setMode('light');
+    }
+  };
+
   const filterCategory = (category) => {
-    if (category === "All") {
-      setFilteredProducts(product);
-    } else {
-      const filtered = product.filter(item => item.category === category);
-      setFilteredProducts(filtered);
-    }
+    setFilteredProducts(
+      category === 'All'
+        ? product
+        : product.filter((item) => item.category === category)
+    );
   };
 
-  // const addcart = (product) => {
-  //   setCartItems([...cartItems, product])
-  // }
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + parseFloat(item.price),
+    0
+  );
 
-  // const AddtoCart = (product) => {
-  //   setCartItems([...cartItems , product])
-  // }
+  const displayPrice = totalPrice.toLocaleString('en-IN');
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
- 
-  const displayPrice = totalPrice.toLocaleString("en-IN");
-
-  
-
-  const light = () => {
-    if (mode === "light") {
-      document.body.style.backgroundColor = "black";
-      document.body.style.color = "white";
-      console.log("light white")
-      setMode("dark");
+  const handleAddToCart = (item) => {
+    const exists = cartItems.find((cart) => cart.id === item.id);
+    if (!exists) {
+      setCartItems([...cartItems, item]);
     } else {
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
-      console.log("light black")
-      setMode("light");
+      alert('Item is already in the cart!');
     }
-
   };
-
 
   return (
     <>
-      <header>
-        <div className='flex justify-between bg-amber-500 p-3'>
-          <h1 className='text-4xl font-bold'>Product List</h1>
+      <header className="flex justify-between bg-amber-500 p-3">
+        <h1 className="text-4xl font-bold">Product List</h1>
 
-          {<div className='flex gap-1'>
-            {mode === "light" ? <button onClick={light} className='text-2xl cursor-pointer'><IoMdSunny /></button> :
-              <button onClick={light} className='text-2xl cursor-pointer'><IoMoon /></button>}
-          </div>}
-
-
-          <button onClick={() => setcart(value => (!value))} className='flex'>
-            <FaCartShopping className='text-5xl' />
-
-            <span className='text-xs bg-red-700 w-5 h-5 rounded-2xl'>{cartItems.length}</span>
+        <div className="flex items-center gap-3">
+          <button onClick={toggleTheme} className="text-2xl">
+            {mode === 'light' ? <IoMdSunny /> : <IoMoon />}
           </button>
-          <button className='bg-red-600 text-white border-red p-1 rounded' onClick={props.logout}>Logout</button>
 
+          <button
+            onClick={() => setCartOpen(!cartOpen)}
+            className="relative text-3xl"
+          >
+            <FaCartShopping />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-700 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cartItems.length}
+              </span>
+            )}
+          </button>
+
+          <button
+            className="bg-red-600 text-white px-3 py-1 rounded"
+            onClick={logout}
+          >
+            Logout
+          </button>
         </div>
-        <div>
-          {cartvalue && <div className='absolute top-20 right-5 bg-gray-300 p-2 '>
-            <Card add={cartItems} setadd={setCartItems} />
-            <div className='flex justify-around'>
-              <div className='mt-10 flex gap-20'>
-                <b>Price₹:-{displayPrice}</b>
-              </div>
+      </header>
 
-            </div>
-          </div>}
+      {cartOpen && (
+        <div className="absolute top-20 right-5 bg-gray-300 p-4 rounded shadow-lg z-10">
+          <Card add={cartItems} setadd={setCartItems} />
+          <div className="text-right mt-4 font-bold">
+            Total: ₹{displayPrice}
+          </div>
         </div>
-      </header> 
+      )}
 
-      <div className='flex justify-center mt-6'>
+      <div className="flex justify-center mt-6">
         <select
-          className='bg-fuchsia-400 p-2 w-40'
+          className="bg-fuchsia-400 p-2 w-40 rounded"
           onChange={(e) => filterCategory(e.target.value)}
         >
           <option value="All">All</option>
-          <option value="lamborghini">lamborghini</option>
+          <option value="lamborghini">Lamborghini</option>
           <option value="BMW">BMW</option>
-          <option value="ROLLS-ROYCE">ROLLS-ROYCE</option>
-          <option value="bugatti">bugatti</option>
+          <option value="ROLLS-ROYCE">Rolls-Royce</option>
+          <option value="bugatti">Bugatti</option>
         </select>
       </div>
 
-      <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-5 mt-10'>
-        {filteredProducts.map((item, i) => (
-          <div key={i} className='border p-5 shadow rounded'>
-            <img src={item.img} alt={item.name} className='w-full h-48 object-contain' />
-            <p className='text-xl font-semibold mt-2'>{item.name}</p>
-            <p className='text-gray-500 '>{item.price}</p>
-            <button onClick={() => {
-              const isalereadysaved = cartItems.find((cart)=> cart.id === item.id)
-
-              if(!isalereadysaved){
-                const newcart = [...cartItems , item]
-                setCartItems(newcart)
-              }else{
-                alert('code is already saved !')
-              }
-
-            }} className='mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition'>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-10 p-4">
+        {filteredProducts.map((item, index) => (
+          <div key={index} className="border p-5 shadow rounded">
+            <img
+              src={item.img}
+              alt={item.name}
+              className="w-full h-48 object-contain"
+            />
+            <p className="text-xl font-semibold mt-2">{item.name}</p>
+            <p className="text-gray-500">₹{item.price}</p>
+            <button
+              onClick={() => handleAddToCart(item)}
+              className="mt-3 bg-green-400 px-4 py-1 rounded hover:bg-green-500 transition"
+            >
               {item.btn}
             </button>
- 
-            {/* <button onClick={() => addmain(item)} className='bg-amber-400'>{item.btn}</button> */}
           </div>
         ))}
-      </div> 
+      </div>
     </>
   );
 }
 
-export default Product;
-
-
- 
+export default Product; 
