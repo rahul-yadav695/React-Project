@@ -66,4 +66,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+/* 
+.ul{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+} */
 
+.ss{
+  display: flex;
+  gap: 20px;
+}
