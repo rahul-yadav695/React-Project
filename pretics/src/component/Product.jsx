@@ -1,15 +1,14 @@
 import React from 'react' 
-const Product = (props) => {
+const Product = ({productData}) => {
   return (
     <>
-    
-      <div> 
-        {props.data.map((item) =>
-           <div>
-            <p>{item.id}</p>
-            <p>{item.name}</p>
-        </div>)}
-      </div>
+     <div>
+      {productData.map((item)=> <div>
+        <p>{item.id}</p>
+        <p>{item.name}</p>
+        <p>{item.price}</p>
+      </div>)}
+     </div>
     </>
   )
 }
