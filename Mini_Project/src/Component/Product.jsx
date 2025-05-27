@@ -123,6 +123,6 @@ function Product({ logout }) {
     </div>
   );
 
-}
+} 
 
 export default Product;

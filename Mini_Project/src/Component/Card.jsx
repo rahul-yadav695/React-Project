@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { product } from '../data/product'
 
-function Card(props) {
-
+function Card(props) { 
+    
     function removecard(id) {
     let cart = JSON.parse(localStorage.getItem("cart"))||[];
     let length = JSON.parse(localStorage.getItem("length"));

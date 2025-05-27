@@ -21,21 +21,36 @@ const Product = ({ datas }) => {
         setcount(numbers)
     }
 
-    const addtocart = (item) => {
-        const cartItem = cart.find((product) => product.id === item.id);
-        if (cartItem) {
-            const updatedCart = cart.map((product) => {
-                if (product.id !== item.id) {
-                    return ([...product, { count: product.count + 1 }]);
-                }
-                return product;
-            });
-            setcart(updatedCart);
-        } else {
-            setcart([...cart, { ...item, count: 1 }]);
-        }
-    };
+    // const addtocart = (item) => {
+    //     const cartItem = cart.find((product) => product.id === item.id);
+    //     if (cartItem) {
+    //         const updatedCart = cart.map((product) => {
+    //             if (product.id !== item.id) {
+    //                 return ([...product, { count: product.count + 1 }]);
+    //             }
+    //             return product;
+    //         });
+    //         setcart(updatedCart);
+    //     } else {
+    //         setcart([...cart, { ...item, count: 1 }]);
+    //     }
+    // };
 
+    const handleclike = (product) => {
+        const index = cart.findIndex((item)=> {
+            return product.id === item.id
+        })
+        console.log("fdsafsdf" , index)
+        if(index === -1){
+            const indexcartvalue = [...cart , {...product , quantity:1}]
+            setcart(indexcartvalue)
+            console.log('object', indexcartvalue)
+        }else{
+            const ubdaetcartValue = [...cart]
+            ubdaetcartValue[index].quantity +=1
+            console.log('ubdaetcartValue', ubdaetcartValue)
+        }
+    }
 
     const sideBar = () => {
         let sider = document.getElementById("sider-bar");
@@ -98,7 +113,7 @@ const Product = ({ datas }) => {
                         <p>{item.id}</p>
                         <p>{item.name}</p>
                         <p>{item.price}</p>
-                        <button onClick={() => addtocart(item)} className='bg-blue-600 p-3 mt-2 cursor-pointer'>add to cart</button>
+                        <button onClick={() => handleclike(item)} className='bg-blue-600 p-3 mt-2 cursor-pointer'>add to cart</button>
                     </div>)}
                 </div>
 
