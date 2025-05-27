@@ -74,7 +74,7 @@ const Product = ({ datas }) => {
                     <p className='text-5xl cursor-pointer' onClick={() => sideBar()}><FaCartShopping /></p>
                 </div>
 
-                {<div id='sider-bar' className='absolute  bg-white p-2 -right-96 h-100 overflow-hidden overflow-scroll'>
+                {<div id='sider-bar' className='absolute  bg-white overflow-hidden p-2 -right-96 h-100 overflow-scroll'>
                     <p onClick={() => sideBarof()} className='text-2xl cursor-pointer  text-red-500 text-end p-3 '>X</p>
                     {cart.map((value) => <div className='w-50 h-50'>
                         <img src={value.img} alt="" />

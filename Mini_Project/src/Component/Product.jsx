@@ -35,19 +35,29 @@ function Product({ logout }) {
   };
 
   const totalPrice = cartItems.reduce(
-    (total, item) => total + Number(item.price),
+    (total, item) => total + Number(item.price)*item.quantity,
     0
   );
   const displayPrice = totalPrice.toLocaleString('en-IN');
 
-  const handleAddToCart = (item) => {
-    const exists = cartItems.some((cart) => cart.id === item.id);
-    if (!exists) {
-      setCartItems([...cartItems, item]);
-    } else {
-      alert('Item is already in the cart!');
-    }
+  const handleAddToCart = (items) => {
+  const index = cartItems.findIndex((item)=>{
+    return items.id===item.id
+  })
+  if(index===-1){
+    let newcart = [...cartItems,{...items,quantity:1}]
+    setCartItems(newcart);
+      localStorage.setItem("cart",JSON.stringify(newcart))
+      localStorage.setItem("length",JSON.stringify(newcart.length))
+  }else{
+    let updatequantity = [...cartItems];
+    updatequantity[index].quantity+=1;
+    setCartItems(updatequantity)
+      localStorage.setItem("cart",JSON.stringify(updatequantity))
+
+  }
   };
+    let length = JSON.parse(localStorage.getItem("length"))||0;
 
   return (
     <div className="">
@@ -63,9 +73,9 @@ function Product({ logout }) {
             className="relative text-3xl"
           >
             <FaCartShopping />
-            {cartItems.length > 0 && (
+            {length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-700 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                {cartItems.length}
+                {length}
               </span>
             )}
           </button>
