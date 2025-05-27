@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaCartShopping } from "react-icons/fa6";
 
 
@@ -6,40 +6,65 @@ import { FaCartShopping } from "react-icons/fa6";
 const Product = ({ datas }) => {
 
     const [cart, setcart] = useState([])
-    const [show, setshow] = useState(false)
+    // const [show, setshow] = useState(false)
     const [count, setcount] = useState(1);
+ 
 
-    const increment = (id)=>{
-        const numbers = cart.map((item)=>{
-            if(item.id===id){
-                return {...item, quantity:item.quantity+1}
+    const increment = (id) => {
+        const numbers = cart.map((item) => {
+            if (item.id === id) {
+                return { ...item, quantity: item.quantity + 1 }
             }
             return item
             // setcount(1)
         })
         setcount(numbers)
     }
-    const addtocart = (items) => {
-        const cartvalues = cart.find((btn) => btn.id === items.id)
-        if (!cartvalues) {
-            setcart([...cart, items])
-        }else{
-            setcount([...cart+1])
+
+    const addtocart = (item) => {
+        const cartItem = cart.find((product) => product.id === item.id);
+        if (cartItem) {
+            const updatedCart = cart.map((product) => {
+                if (product.id !== item.id) {
+                    return ([...product, { count: product.count + 1 }]);
+                }
+                return product;
+            });
+            setcart(updatedCart);
+        } else {
+            setcart([...cart, { ...item, count: 1 }]);
         }
-    }
+    };
 
 
-     const sideBar = ()=>{
+    const sideBar = () => {
         let sider = document.getElementById("sider-bar");
         sider.style.right = "0px";
         console.log("clcik");
-        
-     } 
-      const sideBarof = ()=>{
+
+    }
+    const sideBarof = () => {
         let sider = document.getElementById("sider-bar");
         sider.style.right = "-100%";
         console.log("clcik");
-     }
+    }
+
+    // const localStorageSetData = () => {
+    //     const NewDatas = localStorage.getItem('cart')
+    //     if(NewDatas === ""){
+    //         return[]
+    //     }else{
+    //         JSON.parse(NewDatas)
+    //     }
+    // }
+    // const intijervalues = {
+    //     cart: localStorageSetData(),
+    //     total_item: ""
+    // }
+
+    useEffect(() => {
+        localStorage.setItem("cart" , JSON.stringify(cart))
+    }, [cart])
 
     return (
         <>
@@ -49,8 +74,8 @@ const Product = ({ datas }) => {
                     <p className='text-5xl cursor-pointer' onClick={() => sideBar()}><FaCartShopping /></p>
                 </div>
 
-               { <div id='sider-bar' className='absolute  bg-white p-2 -right-96 h-100 overflow-hidden overflow-scroll'>
-                <p onClick={()=>sideBarof()} className='text-2xl cursor-pointer  text-red-500 text-end p-3 '>X</p>
+                {<div id='sider-bar' className='absolute  bg-white p-2 -right-96 h-100 overflow-hidden overflow-scroll'>
+                    <p onClick={() => sideBarof()} className='text-2xl cursor-pointer  text-red-500 text-end p-3 '>X</p>
                     {cart.map((value) => <div className='w-50 h-50'>
                         <img src={value.img} alt="" />
                         <p>{value.name}</p>
@@ -59,7 +84,7 @@ const Product = ({ datas }) => {
                     </div>)}
                 </div>}
 
-               {/* {show && <div className='grid grid-cols-2 mt-10 ms-10'>
+                {/* {show && <div className='grid grid-cols-2 mt-10 ms-10'>
                     {cart.map((value) => <div>
                         <img className='w-80' src={value.img} alt="" />
                         <p>{value.name}</p>
