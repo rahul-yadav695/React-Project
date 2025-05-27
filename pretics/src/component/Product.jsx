@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaCartShopping } from "react-icons/fa6";
-
+import Home from '../component/Home'
 
 
 const Product = ({ datas }) => {
@@ -19,39 +19,23 @@ const Product = ({ datas }) => {
             // setcount(1)
         })
         setcount(numbers)
-    }
+    } 
+ 
 
-    // const addtocart = (item) => {
-    //     const cartItem = cart.find((product) => product.id === item.id);
-    //     if (cartItem) {
-    //         const updatedCart = cart.map((product) => {
-    //             if (product.id !== item.id) {
-    //                 return ([...product, { count: product.count + 1 }]);
-    //             }
-    //             return product;
-    //         });
-    //         setcart(updatedCart);
-    //     } else {
-    //         setcart([...cart, { ...item, count: 1 }]);
-    //     }
-    // };
-
-    const handleclike = (product) => {
-        const index = cart.findIndex((item)=> {
-            return product.id === item.id
+    const handlclick = (product) => {
+        const indexValue = cart.findIndex((item)=> {
+            return item.id === product.id
         })
-        console.log("fdsafsdf" , index)
-        if(index === -1){
-            const indexcartvalue = [...cart , {...product , quantity:1}]
-            setcart(indexcartvalue)
-            console.log('object', indexcartvalue)
-        }else{
-            const ubdaetcartValue = [...cart]
-            ubdaetcartValue[index].quantity +=1
-            console.log('ubdaetcartValue', ubdaetcartValue)
+        if(indexValue === -1){
+            const cartvalues = [...cart , {...product , quantity:1}]
+            setcart(cartvalues)
+        }else {
+            const ubdatecart = [...cart]
+            ubdatecart[indexValue].quantity+=1
+            setcart(ubdatecart)
         }
     }
-
+   
     const sideBar = () => {
         let sider = document.getElementById("sider-bar");
         sider.style.right = "0px";
@@ -83,6 +67,7 @@ const Product = ({ datas }) => {
 
     return (
         <>
+            <Home count = {datas}/>
             <div className='relative'>
                 <div className='flex justify-between bg-amber-500 p-6'>
                     <b className='text-4xl'>Ptroduct Cart List</b>
@@ -113,7 +98,7 @@ const Product = ({ datas }) => {
                         <p>{item.id}</p>
                         <p>{item.name}</p>
                         <p>{item.price}</p>
-                        <button onClick={() => handleclike(item)} className='bg-blue-600 p-3 mt-2 cursor-pointer'>add to cart</button>
+                        <button onClick={() => handlclick(item)} className='bg-blue-600 p-3 mt-2 cursor-pointer'>add to cart</button>
                     </div>)}
                 </div>
 
