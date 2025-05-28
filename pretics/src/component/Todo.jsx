@@ -13,7 +13,7 @@ const Todo = () => {
             name,
             title,
             helpBox: helpbox
-        });
+        }); 
     };
     return (
         <>
