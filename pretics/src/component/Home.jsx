@@ -36,9 +36,16 @@ const Home = () => {
   return (
     <>
 
+      
+      <div className='relative'>
+        <div className='flex justify-between bg-indigo-600 p-5 text-white'>
+          <b className='text-4xl'>Product List</b>
+          <b className='text-5xl cursor-pointer' onClick={() => setslider(!slider)}><BsCart3 /></b>
+        </div>
+        
       <section>
-        <select>
-          <option value="">Select a product</option>
+        <select className='bg-cyan-400 w-40 p-2 ml-150 mt-10'>
+          <option value="All">All Product</option>
           <option value="Headphones">Headphones</option>
           <option value="Smart Watch">Smart Watch</option>
           <option value="Speaker">Speaker</option>
@@ -50,13 +57,7 @@ const Home = () => {
           <option value="Mercedes AMG GT">Mercedes AMG GT</option>
           <option value="Lamborghini Huracán">Lamborghini Huracán</option>
         </select>
-      </section>
-      F
-      <div className='relative'>
-        <div className='flex justify-between bg-indigo-600 p-5 text-white'>
-          <b className='text-4xl'>Product List</b>
-          <b className='text-5xl cursor-pointer' onClick={() => setslider(!slider)}><BsCart3 /></b>
-        </div>
+      </section> 
 
         {slider && (
           <div className='absolute top-25 bg-white p-5 border-2 right-10 w-70 h-110 overflow-scroll'>

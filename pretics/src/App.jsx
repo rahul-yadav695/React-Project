@@ -1,6 +1,7 @@
 import './App.css' 
 import Product from './component/Product' 
 import Home from './component/Home'
+import Todo from './component/Todo'
 
  const product = [
     { id: 1, quantity:1, category: "lamborghini", img: "https://static.vecteezy.com/system/resources/thumbnails/053/733/179/small_2x/every-detail-of-a-sleek-modern-car-captured-in-close-up-photo.jpg", name: "lamborghini", price: 150000, btn: "Add to cart"},
@@ -17,7 +18,8 @@ function App() {
    <> 
    {/* <Product datas = {product}/> */}
 
-   <Home />
+   {/* <Home /> */}
+   <Todo />
    </>
   )
 }

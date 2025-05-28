@@ -95,10 +95,7 @@ function Product({ logout }) {
       )}
 
       <div className="flex justify-center mt-6">
-        <select
-          className="bg-fuchsia-400 p-2 w-40 rounded"
-          onChange={(e) => filterCategory(e.target.value)}
-        >
+        <select className="bg-fuchsia-400 p-2 w-40 rounded" onChange={(e) => filterCategory(e.target.value)}>
           <option value="All">All</option>
           <option value="lamborghini">Lamborghini</option>
           <option value="BMW">BMW</option>
