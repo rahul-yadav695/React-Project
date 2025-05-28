@@ -33,21 +33,21 @@ const Product = ({ datas }) => {
                     </div>
                 </div>
 
-                <div id="sidebar" className={`fixed top-0 right-0 h-full w-80 bg-white p-4 shadow-lg transform transition-transform ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`} style={{ zIndex: 1000 }}>
+                <div id="sidebar" className={`fixed top-0 right-0 h-full w-80 bg-white p-4 ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
                     <button onClick={closeSidebar} className="text-red-500 text-2xl font-bold float-right cursor-pointer">X</button>
 
                     <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
                     {cart.length === 0 && <p>Your cart is empty</p>}
 
                     {cart.map((item) => (
-                        <div key={item.id} className="flex space-x-4 mb-4 border-b pb-2 items-center">
-
-                            <img src={item.img} alt={item.name} className="w-16 h-16 object-contain" />
+                        <div className="flex gap-5 mb-4 border-b pb-2 items-center">
+                            <img src={item.img} alt={item.name} className="w-30 h-15" />
                             <div className="flex-grow">
-                                <p className="font-semibold">{item.name}</p>
-                                <p>₹{item.price}</p>
+                                <p className="">{item.name}</p>
+                                <p>${item.price}</p>
                                 <p>Quantity: {item.quantity}</p>
                             </div>
+                            <hr />
                         </div>
                     ))}
                 </div>
