@@ -10,22 +10,33 @@ const Home = () => {
     { id: 5, name: "Charger", price: 999, image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/new-year-background-736885_1280.jpg" }
   ];
 
-  const [cart, setcart] = useState([])
-  const [slider, setslider] = useState(false)
+  const [cart, setcart] = useState([]);
+  const [slider, setslider] = useState(false);
+ 
 
-  const addcart = (product) => {
-    setcart([...cart, product])
-  } 
+  const Addubdate = (product) => {
+    const index = cart.findIndex((item) => item.id === product.id);
+    if (index === -1) {
+      const values = [...cart, { ...product, quantity: 1 }];
+      // alert('Product Saved!')
+      setcart(values);
+    } else {
+      const ubdateValue = [...cart];
+      ubdateValue[index].quantity += 1;
+      setcart(ubdateValue);
+    }
+  };
 
   return (
     <>
       <div className='relative'>
-        <div className='flex justify-between bg-indigo-600 p-5'>
+        <div className='flex justify-between bg-indigo-600 p-5 text-white'>
           <b className='text-4xl'>Product List</b>
-          <b className='text-5xl cursor-pointer'><BsCart3 /></b>
+          <b className='text-5xl cursor-pointer' onClick={() => setslider(!slider)}><BsCart3 /></b>
         </div>
 
-        {cart && <div className='absolute top-25 bg-white p-5 border-2 right-10 w-70 h-110 overflow-scroll'>
+        {slider && (
+          <div className='absolute top-25 bg-white p-5 border-2 right-10 w-70 h-110 overflow-scroll'>
             <h2 className='font-bold mt-3'>Your Cart</h2>
             {cart.length === 0 ? (
               <p>No items</p>
@@ -35,25 +46,28 @@ const Home = () => {
                   <img className='w-full h-32 object-cover rounded' src={item.image} alt={item.name} />
                   <p className='font-semibold'>{item.name}</p>
                   <p>${item.price}</p>
+                  <p>{item.quantity}</p>
                 </div>
               ))
             )}
           </div>
-        }
+        )}
 
         <div className='grid grid-cols-3 mt-5 p-5 gap-5'>
-          {products.map((items) => <div className='border-2 p-5'>
-            <img className='w-100 h-80 object-cover' src={items.image} alt="" />
-            <div className='p-1 '>
-              <p>{items.name}</p>
-              <p>${items.price}</p>
-              <button onClick={() => addcart(items)} className='bg-cyan-600 p-2 cursor-pointer'>Add to Cart</button>
+          {products.map((items) => (
+            <div key={items.id} className='border-2 p-5'>
+              <img className='w-100 h-80 object-cover' src={items.image} alt="" />
+              <div className='p-1 '>
+                <p>{items.name}</p>
+                <p>${items.price}</p>
+                <button onClick={() => Addubdate(items)} className='bg-cyan-600 p-2 text-white cursor-pointer'>Add to Cart</button>
+              </div>
             </div>
-          </div>)}
+          ))}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
