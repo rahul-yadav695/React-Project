@@ -1,110 +1,72 @@
-import React, { useEffect, useState } from 'react'
-import { FaCartShopping } from "react-icons/fa6";
-import Home from '../component/Home'
-
+import React, { useEffect, useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Product = ({ datas }) => {
+    const [cart, setCart] = useState([]);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const [cart, setcart] = useState([])
-    // const [show, setshow] = useState(false)
-    const [count, setcount] = useState(1);
- 
-
-    const increment = (id) => {
-        const numbers = cart.map((item) => {
-            if (item.id === id) {
-                return { ...item, quantity: item.quantity + 1 }
-            }
-            return item
-            // setcount(1)
-        })
-        setcount(numbers)
-    } 
- 
-
-    const handlclick = (product) => {
-        const indexValue = cart.findIndex((item)=> {
-            return item.id === product.id
-        })
-        if(indexValue === -1){
-            const cartvalues = [...cart , {...product , quantity:1}]
-            setcart(cartvalues)
-        }else {
-            const ubdatecart = [...cart]
-            ubdatecart[indexValue].quantity+=1
-            setcart(ubdatecart)
+    const handleClick = (product) => {
+        const index = cart.findIndex((item) => item.id === product.id);
+        if (index === -1) {
+            setCart([...cart, { ...product, quantity: 1 }]);
+        } else {
+            const newCart = [...cart];
+            newCart[index].quantity += 1;
+            setCart(newCart);
         }
-    }
-   
-    const sideBar = () => {
-        let sider = document.getElementById("sider-bar");
-        sider.style.right = "0px";
-        console.log("clcik");
+    };
 
-    }
-    const sideBarof = () => {
-        let sider = document.getElementById("sider-bar");
-        sider.style.right = "-100%";
-        console.log("clcik");
-    }
-
-    // const localStorageSetData = () => {
-    //     const NewDatas = localStorage.getItem('cart')
-    //     if(NewDatas === ""){
-    //         return[]
-    //     }else{
-    //         JSON.parse(NewDatas)
-    //     }
-    // }
-    // const intijervalues = {
-    //     cart: localStorageSetData(),
-    //     total_item: ""
-    // }
+    const openSidebar = () => setSidebarOpen(true);
+    const closeSidebar = () => setSidebarOpen(false);
 
     useEffect(() => {
-        localStorage.setItem("cart" , JSON.stringify(cart))
-    }, [cart])
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     return (
         <>
-            <Home count = {datas}/>
-            <div className='relative'>
-                <div className='flex justify-between bg-amber-500 p-6'>
-                    <b className='text-4xl'>Ptroduct Cart List</b>
-                    <p className='text-5xl cursor-pointer' onClick={() => sideBar()}><FaCartShopping /></p>
+            <div className="relative">
+                <div className="flex justify-between bg-amber-500 p-6">
+                    <b className="text-4xl">Product Cart List</b>
+                    <div className="flex items-center text-5xl"><FaShoppingCart className="cursor-pointer" onClick={openSidebar} />
+                        <p className="text-emerald-900 text-xl font-bold">{cart.length}</p>
+                    </div>
                 </div>
 
-                {<div id='sider-bar' className='absolute  bg-white overflow-hidden p-2 -right-96 h-100 overflow-scroll'>
-                    <p onClick={() => sideBarof()} className='text-2xl cursor-pointer  text-red-500 text-end p-3 '>X</p>
-                    {cart.map((value) => <div className='w-50 h-50'>
-                        <img src={value.img} alt="" />
-                        <p>{value.name}</p>
-                        <p>{value.price}</p>
-                        <p>{value.quantity}</p>
-                    </div>)}
-                </div>}
+                <div id="sidebar" className={`fixed top-0 right-0 h-full w-80 bg-white p-4 shadow-lg transform transition-transform ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`} style={{ zIndex: 1000 }}>
+                    <button onClick={closeSidebar} className="text-red-500 text-2xl font-bold float-right cursor-pointer">X</button>
 
-                {/* {show && <div className='grid grid-cols-2 mt-10 ms-10'>
-                    {cart.map((value) => <div>
-                        <img className='w-80' src={value.img} alt="" />
-                        <p>{value.name}</p>
-                        <p className=''>{value.price}</p>
-                    </div>)}
-                </div>} */}
+                    <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+                    {cart.length === 0 && <p>Your cart is empty</p>}
 
-                <div className='grid grid-cols-3 p-10 gap-10'>
-                    {datas.map((item) => <div>
-                        <img className='w-100 h-100 object-contain' src={item.img} alt={item.category} />
-                        <p>{item.id}</p>
-                        <p>{item.name}</p>
-                        <p>{item.price}</p>
-                        <button onClick={() => handlclick(item)} className='bg-blue-600 p-3 mt-2 cursor-pointer'>add to cart</button>
-                    </div>)}
+                    {cart.map((item) => (
+                        <div key={item.id} className="flex space-x-4 mb-4 border-b pb-2 items-center">
+
+                            <img src={item.img} alt={item.name} className="w-16 h-16 object-contain" />
+                            <div className="flex-grow">
+                                <p className="font-semibold">{item.name}</p>
+                                <p>₹{item.price}</p>
+                                <p>Quantity: {item.quantity}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
+                <div className="grid grid-cols-3 p-10 gap-10">
+                    {datas.map((item) => (
+                        <div key={item.id} className="border p-4 rounded shadow">
+                            <img className="w-full h-48 object-contain" src={item.img} alt={item.category} />
+
+                            <p>ID: {item.id}</p>
+                            <p>{item.name}</p>
+                            <p>₹{item.price}</p>
+                            <button onClick={() => handleClick(item)} className="bg-blue-600 p-3 mt-2 text-white rounded cursor-pointer hover:bg-blue-700">Add to cart</button>
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Product
+export default Product;
