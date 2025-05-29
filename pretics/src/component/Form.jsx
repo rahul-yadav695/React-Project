@@ -10,7 +10,7 @@ const Form = () => {
     const [page , setpage] = useState(false)
     const [name , setname] = useState('')
     const [password , setPassword] = useState('')
-    const [show , setshow] = useState(false)
+    const [show , setshow] = useState("")
 
     const mainpages = () => {
         if(name==="" || name.length<=5 || password==="" || password.length<=6){
@@ -21,16 +21,16 @@ const Form = () => {
             }, 4000);
         }else {
             setpage(true) 
+            setshow('congretion we are the won!')
             setTimeout(() => {
               setshow(null)
             }, 4000);
-            setshow('congretion we are the won!')
         }
     }
 
   return (
     <div>
-      {show && <Tostify err={err} />}
+      {show && <Tostify message={show} />}
        {page===false ?<form onSubmit={restart} className='w-70 h-80 border-2 p-10 ml-20 mt-20'>
         <div style={{ marginBottom: '15px' }}>
           <label>Name</label><br />
@@ -43,7 +43,7 @@ const Form = () => {
         </div>
 
         <button onClick={mainpages} className='bg-cyan-500 w-30 h-10 rounded-2xl cursor-pointer' type="submit"> Submit </button>
-      </form> : <Home/>}
+      </form> : <Home message={show}/>}
     </div>
   )
 }
