@@ -7,7 +7,7 @@ const Form = () => {
     const restart = (e) => {
         e.preventDefault()
     }
-    const [page , setpage] = useState(false)
+    const [page , setpage] = useState(true)
     const [name , setname] = useState('')
     const [password , setPassword] = useState('')
     const [show , setshow] = useState("")

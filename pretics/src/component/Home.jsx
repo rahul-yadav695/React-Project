@@ -23,18 +23,17 @@ const Home = (props) => {
   const [slider, setslider] = useState(false);
   const [slected, setslected] = useState("All")
 
+
+
+
+
   const Addubdate = (product) => {
     const index = cart.findIndex((item) => item.id === product.id);
-    if (index === -1) { 
+    if (index === -1) {
       const values = [...cart, { ...product, quantity: 1 }];
-      alert('Product Saved!')
+      // alert('Product Saved!')
       setcart(values);
-
-       useEffect(() => {
-    const localData = JSON.parse(localStorage.getItem('cart')) || [];
-    setcart(localData);
-  }, []);
-
+      localStorage.setItem('cart', JSON.stringify(cart));
     } else {
       const ubdateValue = [...cart];
       ubdateValue[index].quantity += 1;
@@ -42,16 +41,16 @@ const Home = (props) => {
     }
   };
 
- 
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
 
   // const handleClick = () => {
   //   const result = category === "All"? cart : cart.filter(item => item.category === category);
   //   setslected(result);
   // };
+
+  const localData = JSON.parse(localStorage.getItem('cart')) || [];
+  setcart(localData);
 
   const result = slected === "All" ? products : products.filter
     (item => item.category === slected);
@@ -83,6 +82,7 @@ const Home = (props) => {
         {slider && (
           <div className='absolute top-25 bg-white p-5 border-2 right-10 w-70 h-110 overflow-scroll'>
             <h2 className='font-bold mt-3 transform-3d'>Your Cart</h2>
+            <p className='font-bold mt-5'>totalPrice:-${totalPrice}</p><hr />
             {cart.length === 0 ? (
               <p>No items</p>
             ) : (
@@ -92,6 +92,7 @@ const Home = (props) => {
                   <p className='font-semibold'>{item.name}</p>
                   <p className='font-bold'>${item.price}</p>
                   <p>{item.quantity}</p>
+
                 </div>
               ))
             )}
