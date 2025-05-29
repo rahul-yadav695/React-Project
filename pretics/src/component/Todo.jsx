@@ -27,7 +27,7 @@ const Todo = () => {
                 <input onChange={(e) => setdescription(e.target.value)} className='border-2 mt-5' type="text" value={description} placeholder='Enter your Help Box' /><br />
                 <button onClick={() => addtofilterarr} className='bg-amber-300 p-2 ml-10 mt-5 cursor-pointer'>Sumbit</button>
 
-                {filterbton && (
+                {/* {filterbton && (
                     <div className="mt-5 ml-10 border-2 w-80 p-5 bg-gray-100">
                         <h3 className="font-bold mb-2">Sumbit Data:</h3>
                         <p>Name:{filterbton.name}</p>
@@ -35,7 +35,11 @@ const Todo = () => {
                         <p>Help Box:{filterbton.description}</p>
                         
                     </div>
-                )}
+                )} */}
+
+                <div>
+                    {}
+                </div>
             </div>
 
         </>
