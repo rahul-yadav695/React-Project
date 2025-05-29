@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 const Todo = () => {
 
+    const [array , setarray] = useState('')
     const [name, setname] = useState('')
     const [title , settitle] = useState('')
     const [description , setdescription] = useState('')
@@ -38,7 +39,11 @@ const Todo = () => {
                 )} */}
 
                 <div>
-                    {}
+                    {array.map((item)=> <div>
+                        <p>{item.name}</p>
+                        <p>{item.title}</p>
+                        <p>{item.description}</p>
+                    </div>)}
                 </div>
             </div>
 

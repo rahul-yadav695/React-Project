@@ -6,8 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function SigninPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [login, setLogin] = useState(false);
     const [error, setError] = useState('');
+    const [login, setLogin] = useState(false);
 
     const showToast = (msg) => toast(msg);
 
