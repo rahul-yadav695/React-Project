@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { BsCart3 } from "react-icons/bs";
+import Tostify from './Tostify';
 
-const Home = () => {
+const Home = (props) => {
   const products = [
     { id: 1, name: "Headphones", price: 299, image: "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1702214609/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/303326_br0twi.png" },
     { id: 2, name: "Smart Watch", price: 499, image: "https://m.media-amazon.com/images/I/6199ZpjY0GL._AC_UF1000,1000_QL80_.jpg" },
@@ -32,11 +33,12 @@ const Home = () => {
       setcart(ubdateValue);
     }
   };
+console.log(props.error,"erro");
 
   return (
     <>
 
-      
+       { <Tostify error={props.error}/>}
       <div className='relative'>
         <div className='flex justify-between bg-indigo-600 p-5 text-white'>
           <b className='text-4xl'>Product List</b>
