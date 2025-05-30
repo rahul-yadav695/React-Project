@@ -15,7 +15,8 @@ function Card(props) {
         localStorage.setItem("length",JSON.stringify(data.length))
     }
 
-    let cart = JSON.parse(localStorage.getItem("cart"))||[];
+    let cart =
+     JSON.parse(localStorage.getItem("cart"))||[];
 
     return (
         <> 
