@@ -20,7 +20,8 @@ function App() {
    {/* <Product datas = {product}/> */}
 
    {/* <Home /> */}
-   <Form />
+   {/* <Form /> */}
+   <Todo />
    </>
   )
 }

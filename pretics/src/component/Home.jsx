@@ -31,7 +31,7 @@ const Home = ({logout , message}) => {
       const values = [...cart, { ...product, quantity: 1 }];
       // alert('Product Saved!')
       setcart(values);
-      localStorage.setItem('party' , JSON.stringify())
+      // localStorage.setItem('party' , JSON.stringify())
     } else {
       const ubdateValue = [...cart];
       ubdateValue[index].quantity += 1;
@@ -40,9 +40,9 @@ const Home = ({logout , message}) => {
   };
  
   
-  useEffect=(()=>{
-    const ubdatecart = JSON.parse(localStorage.getItem("party"))
-  },[])
+  // useEffect=(()=>{
+  //   const ubdatecart = JSON.parse(localStorage.getItem("party"))
+  // },[])
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -82,7 +82,7 @@ const Home = ({logout , message}) => {
 
         {slider && (
           <div className='absolute top-25 bg-white p-5 border-2 right-10 w-70 h-110 overflow-scroll'>
-            <h2 className='font-bold mt-3 transform-3d'>Your Cart</h2>
+            <h2 className='font-bold mt-3 transform-3d'>Your Cart</h2> <hr /> <br />
             {cart.length === 0 ? (
               <p>No items</p>
             ) : (

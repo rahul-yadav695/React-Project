@@ -1,54 +1,73 @@
-import React, { useState } from 'react'
-
+import React, { useState } from 'react';
 
 const Todo = () => {
+    const [array, setArray] = useState([]);
+    const [name, setName] = useState('');
+    const [title, setTitle] = useState('');
+    const [images, setImages] = useState(null);
+    const [description, setDescription] = useState('');
 
-    const [array , setarray] = useState('')
-    const [name, setname] = useState('')
-    const [title , settitle] = useState('')
-    const [description , setdescription] = useState('')
-    const [filterbton, setbutton] = useState(null)
-
-    const addtofilterarr = () => {
-        setbutton([
+    const addToArray = () => {
+        const newItem = {
             name,
             title,
             description,
-            filterbton
-        ])
-    } 
+            imageUrl: images ? URL.createObjectURL(images) : null
+        };
+
+        setArray([...array, newItem]);
+        setName('');
+        setTitle('');
+        setDescription('');
+        setImages(null);
+        // images.value = "" // ❌ This won't work. You can't reset file input like this.
+        document.getElementById('imageInput').value = ""; // ✅ Use id to reset
+    };
+
+    // ✅ Delete function
+    const handleDelete = (index) => {
+        const newArray = array.filter((_, i) => i !== index);
+        setArray(newArray);
+    };
+
     return (
         <>
-            <div className='ml-50 mt-50 border-2 w-60 p-5'>
-                <label>Enter Name:---</label>
-                <input onChange={(e) => setname(e.target.value)} value={name} className='border-2 mt-5' type="text" placeholder='Enter your Name' /><br />
-                <label>Enter Title:--</label>
-                <input onChange={(e) => settitle(e.target.value)} value={title} className='border-2 mt-5' type="text" placeholder='Enter your title' /><br />
-                <label>Enter help box:-</label>
-                <input onChange={(e) => setdescription(e.target.value)} className='border-2 mt-5' type="text" value={description} placeholder='Enter your Help Box' /><br />
-                <button onClick={() => addtofilterarr} className='bg-amber-300 p-2 ml-10 mt-5 cursor-pointer'>Sumbit</button>
+            <div className='ml-5 mt-5 border-2 w-60 p-5'>
+                <label>Enter Name:</label>
+                <input onChange={(e) => setName(e.target.value)} value={name} className='border-2 mt-2 w-full' type="text" placeholder='Enter your Name' /><br />
 
-                {/* {filterbton && (
-                    <div className="mt-5 ml-10 border-2 w-80 p-5 bg-gray-100">
-                        <h3 className="font-bold mb-2">Sumbit Data:</h3>
-                        <p>Name:{filterbton.name}</p>
-                        <p>Title:{filterbton.title}</p>
-                        <p>Help Box:{filterbton.description}</p>
-                        
-                    </div>
-                )} */}
+                <label>Enter Title:</label>
+                <input onChange={(e) => setTitle(e.target.value)} value={title} className='border-2 mt-2 w-full' type="text" placeholder='Enter your Title' /><br />
 
-                <div>
-                    {array.map((item)=> <div>
-                        <p>{item.name}</p>
-                        <p>{item.title}</p>
-                        <p>{item.description}</p>
-                    </div>)}
-                </div>
+                <label>Enter Description:</label>
+                <input onChange={(e) => setDescription(e.target.value)} value={description} className='border-2 mt-2 w-full' type="text" placeholder='Enter your Help Box' /><br />
+
+                <label>Upload Image:</label>
+                <input id="imageInput" onChange={(e) => setImages(e.target.files[0])} className='border-2 mt-2 w-full h-7' type="file" /><br />
+
+                <button onClick={addToArray} className='bg-amber-300 p-2 mt-4 cursor-pointer'>Submit</button>
             </div>
 
+            <div className='mt-5 grid grid-cols-3'>
+                {array.map((item, index) => (
+                    <div key={index} className='border p-2 mb-2 w-60 ml-5'>
+                        <p>Name: {item.name}</p>
+                        <p>Title: {item.title}</p>
+                        <p>Description: {item.description}</p>
+                        {item.imageUrl && (
+                            <img className='w-40 h-40 object-contain mt-2 ml-2' src={item.imageUrl} alt="Uploaded Preview" />
+                        )}
+                        <div className='flex gap-10 raj mt-2'>
+                            <button className='bg-cyan-500 w-20 h-10 rounded-2xl cursor-pointer'>Save</button>
+                            <button onClick={() => handleDelete(index)} className='bg-red-500 w-20 h-10 rounded-2xl cursor-pointer'>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default Todo
+export default Todo;
