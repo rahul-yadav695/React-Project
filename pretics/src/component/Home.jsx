@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BsCart3 } from "react-icons/bs";
 import Tostify from './Tostify';
 
-const Home = (props) => {
+const Home = ({logout , message}) => {
   const products = [
     { id: 1, name: "Headphones", price: 299, image: "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1702214609/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/303326_br0twi.png", category: "Headphones" },
     { id: 2, name: "Smart Watch", price: 499, image: "https://m.media-amazon.com/images/I/6199ZpjY0GL._AC_UF1000,1000_QL80_.jpg", category: "Smart Watch" },
@@ -24,28 +24,25 @@ const Home = (props) => {
   const [slected, setslected] = useState("All")
 
 
-  useEffect(() => {
-    const localData = JSON.parse(localStorage.getItem('cart')) || [];
-    setcart(localData);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
-
+ 
   const Addubdate = (product) => {
     const index = cart.findIndex((item) => item.id === product.id);
     if (index === -1) {
       const values = [...cart, { ...product, quantity: 1 }];
       // alert('Product Saved!')
       setcart(values);
-
+      localStorage.setItem('party' , JSON.stringify())
     } else {
       const ubdateValue = [...cart];
       ubdateValue[index].quantity += 1;
       setcart(ubdateValue);
     }
   };
+ 
+  
+  useEffect=(()=>{
+    const ubdatecart = JSON.parse(localStorage.getItem("party"))
+  },[])
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -60,7 +57,7 @@ const Home = (props) => {
   return (
     <>
 
-      {props.message && <Tostify message={props.message} />}
+      {message && <Tostify message={message} />}
       <div className='relative'>
         <div className='flex justify-between bg-indigo-600 p-5 text-white'>
           <b className='text-4xl'>Product List</b>
@@ -79,14 +76,13 @@ const Home = (props) => {
             <option value="Mercedes AMG GT">Mercedes AMG GT</option>
             <option value="Tesla">Tesla</option>
           </select>
-            <button className='bg-red-500 w-30 h-10 rounded-2xl cursor-pointer'>Log Out</button>
+            <button onClick={logout} className='bg-red-500 w-30 h-10 rounded-2xl cursor-pointer'>Log Out</button>
         </section>
 
 
         {slider && (
           <div className='absolute top-25 bg-white p-5 border-2 right-10 w-70 h-110 overflow-scroll'>
             <h2 className='font-bold mt-3 transform-3d'>Your Cart</h2>
-            <p className='font-bold'>totalPrice:-${totalPrice}</p><hr />
             {cart.length === 0 ? (
               <p>No items</p>
             ) : (
@@ -100,6 +96,8 @@ const Home = (props) => {
                 </div>
               ))
             )}
+            <p className='font-bold'>totalPrice:-${totalPrice}</p><hr />
+
           </div>
         )}
 
