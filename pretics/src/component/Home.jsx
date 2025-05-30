@@ -24,8 +24,14 @@ const Home = (props) => {
   const [slected, setslected] = useState("All")
 
 
+  useEffect(() => {
+    const localData = JSON.parse(localStorage.getItem('cart')) || [];
+    setcart(localData);
+  }, []);
 
-
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   const Addubdate = (product) => {
     const index = cart.findIndex((item) => item.id === product.id);
@@ -33,7 +39,7 @@ const Home = (props) => {
       const values = [...cart, { ...product, quantity: 1 }];
       // alert('Product Saved!')
       setcart(values);
-      localStorage.setItem('cart', JSON.stringify(cart));
+
     } else {
       const ubdateValue = [...cart];
       ubdateValue[index].quantity += 1;
@@ -49,9 +55,6 @@ const Home = (props) => {
   //   setslected(result);
   // };
 
-  const localData = JSON.parse(localStorage.getItem('cart')) || [];
-  setcart(localData);
-
   const result = slected === "All" ? products : products.filter
     (item => item.category === slected);
   return (
@@ -64,8 +67,8 @@ const Home = (props) => {
           <b className='text-5xl cursor-pointer' onClick={() => setslider(!slider)}><BsCart3 /></b>
         </div>
 
-        <section>
-          <select className='bg-cyan-400 w-40 p-2 ml-300 mt-10' onChange={(e) => setslected(e.target.value)}>
+        <section className='flex gap-60 mt-10'>
+          <select className='bg-cyan-400 w-40 p-2 ml-220 cursor-pointer' onChange={(e) => setslected(e.target.value)}>
             <option value="All">All Products</option>
             <option value="Headphones">Headphones</option>
             <option value="Smart Watch">Smart Watch</option>
@@ -76,13 +79,14 @@ const Home = (props) => {
             <option value="Mercedes AMG GT">Mercedes AMG GT</option>
             <option value="Tesla">Tesla</option>
           </select>
-
+            <button className='bg-red-500 w-30 h-10 rounded-2xl cursor-pointer'>Log Out</button>
         </section>
+
 
         {slider && (
           <div className='absolute top-25 bg-white p-5 border-2 right-10 w-70 h-110 overflow-scroll'>
             <h2 className='font-bold mt-3 transform-3d'>Your Cart</h2>
-            <p className='font-bold mt-5'>totalPrice:-${totalPrice}</p><hr />
+            <p className='font-bold'>totalPrice:-${totalPrice}</p><hr />
             {cart.length === 0 ? (
               <p>No items</p>
             ) : (
