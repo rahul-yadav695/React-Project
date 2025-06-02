@@ -1,14 +1,14 @@
 import './App.css';
-import Home from './component/Home'; 
+import Home from './component/Home';
+import Form from './component/Form';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {  
+function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/Home' element={<Home />} /> 
-          {/* <Route path="/home" element={<Home logout={logout} message={message} />} /> */}
+          <Route path='/form' element={<Form />} />
         </Routes>
       </BrowserRouter>
     </>

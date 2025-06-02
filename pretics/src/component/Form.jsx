@@ -3,7 +3,7 @@ import Home from './Home';
 import Tostify from './Tostify';
 
 const Form = () => {
-  const [page, setPage] = useState(true);
+  const [page, setPage] = useState(false);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(null);

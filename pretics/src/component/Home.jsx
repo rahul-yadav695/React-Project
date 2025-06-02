@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BsCart3 } from "react-icons/bs";
 import Tostify from './Tostify';
 
-const Home = ({logout , message}) => {
+const Home = ({ message }) => {
   const products = [
     { id: 1, name: "Headphones", price: 299, image: "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1702214609/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/303326_br0twi.png", category: "Headphones" },
     { id: 2, name: "Smart Watch", price: 499, image: "https://m.media-amazon.com/images/I/6199ZpjY0GL._AC_UF1000,1000_QL80_.jpg", category: "Smart Watch" },
@@ -15,9 +15,7 @@ const Home = ({logout , message}) => {
     { id: 8, name: "Audi R8", price: 220000, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ2Ypd8CU3N6Y8bHUOP5IaB1SQK4U-bcZ49w&s", category: "BMW" },
     { id: 9, name: "Mercedes AMG GT", price: 180000, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf45v6yRIn9gPlsiaCcUT5HUK-zxRA93Eu4w&s", category: "Mercedes AMG GT" },
     { id: 10, name: "Lamborghini Huracán", price: 320000, image: "https://i.ytimg.com/vi/MG4AAcV9Pc0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDN_0jWQ5wpqcSgJ2QgYKvDwW_Dmw", category: "Mercedes AMG GT" }
-  ];
-
-  console.log(products , "sadfsdfsdf")
+  ]; 
 
 
   const [cart, setcart] = useState([]);
@@ -25,7 +23,7 @@ const Home = ({logout , message}) => {
   const [slected, setslected] = useState("All")
 
 
- 
+
   const Addubdate = (product) => {
     const index = cart.findIndex((item) => item.id === product.id);
     if (index === -1) {
@@ -39,8 +37,13 @@ const Home = ({logout , message}) => {
       setcart(ubdateValue);
     }
   };
- 
-  
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+
+    alert('Logged out successfully');
+
+  };
   // useEffect=(()=>{
   //   const ubdatecart = JSON.parse(localStorage.getItem("party"))
   // },[])
@@ -77,7 +80,7 @@ const Home = ({logout , message}) => {
             <option value="Mercedes AMG GT">Mercedes AMG GT</option>
             <option value="Tesla">Tesla</option>
           </select>
-            <button onClick={logout} className='bg-red-500 w-30 h-10 rounded-2xl cursor-pointer'>Log Out</button>
+          <button onClick={handleLogout} className='bg-red-500 w-30 h-10 rounded-2xl cursor-pointer'>Log Out</button>
         </section>
 
 
@@ -97,8 +100,7 @@ const Home = ({logout , message}) => {
                 </div>
               ))
             )}
-            <p className='font-bold'>totalPrice:-${totalPrice}</p><hr />
-
+            <p className='font-bold'>totalPrice:-${totalPrice}</p><hr /> 
           </div>
         )}
 
