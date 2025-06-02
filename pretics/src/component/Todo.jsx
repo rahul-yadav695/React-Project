@@ -20,15 +20,21 @@ const Todo = () => {
         setTitle('');
         setDescription('');
         setImages(null);
-        // images.value = "" // ❌ This won't work. You can't reset file input like this.
-        document.getElementById('imageInput').value = ""; // ✅ Use id to reset
+
+        document.getElementById('imageInput').value = "";
     };
 
-    // ✅ Delete function
     const handleDelete = (index) => {
-        const newArray = array.filter((_, i) => i !== index);
-        setArray(newArray);
+        setArray(array.filter((item) => item !== index));
     };
+
+    // const handlclicke = () => {
+    //     if(array === ""){
+    //         alert("Sorry picher send me")
+    //     }else{
+    //         alert("You look absolutely stunning in this picture.")
+    //     }
+    // }
 
     return (
         <>

@@ -17,6 +17,7 @@ const Home = ({logout , message}) => {
     { id: 10, name: "Lamborghini Huracán", price: 320000, image: "https://i.ytimg.com/vi/MG4AAcV9Pc0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDN_0jWQ5wpqcSgJ2QgYKvDwW_Dmw", category: "Mercedes AMG GT" }
   ];
 
+  console.log(products , "sadfsdfsdf")
 
 
   const [cart, setcart] = useState([]);
