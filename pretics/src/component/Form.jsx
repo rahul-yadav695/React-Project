@@ -28,7 +28,7 @@ const Form = (props) => {
     <div>
       {show && <Tostify message={show} />}
 
-      {props.login === false ? (
+      {props.login === false ? (    
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
           <form onSubmit={restart} className="bg-white shadow-lg rounded-2xl px-10 py-8 w-full max-w-md" >
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Login</h2>
