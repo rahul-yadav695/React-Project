@@ -27,10 +27,8 @@ const Home = ({ message }) => {
   const Addubdate = (product) => {
     const index = cart.findIndex((item) => item.id === product.id);
     if (index === -1) {
-      const values = [...cart, { ...product, quantity: 1 }];
-      // alert('Product Saved!')
-      setcart(values);
-      // localStorage.setItem('party' , JSON.stringify())
+      const values = [...cart, { ...product, quantity: 1 }]; 
+      setcart(values); 
     } else {
       const ubdateValue = [...cart];
       ubdateValue[index].quantity += 1;

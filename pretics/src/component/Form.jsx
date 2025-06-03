@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Home from '../component/Home';
 import Tostify from './Tostify';
-import Product from '../component/Product'
 
 const Form = (props) => {
   const [page, setPage] = useState(false);
@@ -14,7 +13,7 @@ const Form = (props) => {
   };
 
   const restart = (e) => {
-    e.preventDefalt();
+    e.preventDefault();
     if (name === '' || name.length <= 5 || password === '' || password.length <= 6) {
       setShow('Please check name and password!');
     } else {
@@ -27,24 +26,31 @@ const Form = (props) => {
 
   return (
     <div>
-      {props.login === false ? <form onSubmit={restart} className='w-70 h-80 border-2 p-10 ml-20 mt-20'>
-        <div style={{ marginBottom: '15px' }}>
-          <label>Name</label><br />
-          <input className='border-2 w-50 p-2 rounded-2xl' type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your Name"
-          />
+      {show && <Tostify message={show} />}
+
+      {props.login === false ? (
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+          <form onSubmit={restart} className="bg-white shadow-lg rounded-2xl px-10 py-8 w-full max-w-md" >
+            <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Login</h2>
+
+            <div className="mb-5">
+              <label className="block text-gray-600 font-semibold mb-2">Name</label>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your Name" className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-gray-600 font-semibold mb-2">Password</label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your Password" className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+            </div>
+
+            <button type="submit" className="w-full bg-cyan-500 text-white py-2 rounded-xl font-semibold hover:bg-cyan-600 transition duration-300">Submit</button>
+          </form>
         </div>
-        <div style={{ marginBottom: '15px' }}>
-          <label>Password</label><br />
-          <input className='border-2 w-50 p-2 rounded-2xl' type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your Password"
-          />
-        </div>
-        <button className='bg-cyan-500 w-30 h-10 rounded-2xl cursor-pointer' type="submit">
-          Submit
-        </button>
-      </form>
-        : <Home />
-      }
+      ) : (
+        <Home />
+      )}
     </div>
+
   );
 };
 
