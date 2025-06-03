@@ -1,32 +1,31 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Form from './Form';
-import Home from './Home';
-import Product from './Product';
-import Todo from './Todo';
+import Form from './component/Form';
+import Home from './component/Home'; 
+import Product from './component/Product';
+
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
   const [login, setLogin] = useState(false); 
+  const navgate = useNavigate()
 
   useEffect(() => {
     if (login) {
-      useNavigate("/home");
+      navgate("/home");
     } else {
-      useNavigate("/login");
+      navgate("/login");
     }
-  }, []);
+  }, [login , navgate]);
 
   return (
     <Routes>
-      <Route path='/login' element={<Form setLogin={setLogin} />} />
-      {login && (
+      <Route path='/login' element={<Form login={login} setLogin={setLogin} />} /> 
         <>
           <Route path='/home' element={<Home />} />
-          <Route path='/product' element={<Product />} />
-          <Route path='/todo' element={<Todo />} />
-        </>
-      )}
+          {/* <Route path='/product' element={<Product />} /> */}
+          {/* <Route path='/todo' element={<Todo />} /> */}
+        </> 
     </Routes>
   );
 }
