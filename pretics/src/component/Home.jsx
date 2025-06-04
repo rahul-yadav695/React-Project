@@ -69,7 +69,7 @@ const Home = ({ message , setLogin }) => {
   //   const ubdatecart = JSON.parse(localStorage.getItem("party"))
   // },[])
 
-  // const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
 
   // const handleClick = () => {
