@@ -29,3 +29,33 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+  // useEffect(() => {
+  //   const storedCart = localStorage.getItem("cart");
+  //   if (storedCart) {
+  //     setcart(JSON.parse(storedCart));
+  //   }
+  // }, []);
+ 
+  // useEffect(() => {
+  //   localStorage.setItem("cart", JSON.stringify(cart));
+  // }, [cart]);
+
+
+
+  // const handleLogout = () => {
+  //   if (cart.length > 0) {
+  //     alert("Please remove all items from the cart before logging out.");
+  //     return;
+  //   }
+  //   localStorage.removeItem('cart');
+  //   localStorage.removeItem('login');
+  //   setLogin(false);
+  //   alert('Logged out successfully');
+  // };

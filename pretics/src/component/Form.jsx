@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Home from '../component/Home';
 import Tostify from './Tostify';
 
-const Form = (props) => {
-  const [page, setPage] = useState(false);
+const Form = () => {
+  const [login, setLogin] = useState(false);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(null);
 
-  const logout = () => {
-    setPage(false);
-  };
+  useEffect(() => {
+    const storedLogin = localStorage.getItem('login');
+    if (storedLogin === 'true') {
+      setLogin(true);
+    }
+  }, []);
 
   const restart = (e) => {
     e.preventDefault();
     if (name === '' || name.length <= 5 || password === '' || password.length <= 6) {
       setShow('Please check name and password!');
     } else {
-      setPage(true);
+      setLogin(true);
+      localStorage.setItem('login', 'true');
       setShow('Congratulations, you won!');
-      props.setLogin(true)
     }
     setTimeout(() => setShow(null), 4000);
   };
@@ -28,9 +31,9 @@ const Form = (props) => {
     <div>
       {show && <Tostify message={show} />}
 
-      {props.login === false ? (    
+      {!login ? (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-          <form onSubmit={restart} className="bg-white shadow-lg rounded-2xl px-10 py-8 w-full max-w-md" >
+          <form onSubmit={restart} className="bg-white shadow-lg rounded-2xl px-10 py-8 w-full max-w-md">
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Login</h2>
 
             <div className="mb-5">
@@ -47,10 +50,9 @@ const Form = (props) => {
           </form>
         </div>
       ) : (
-        <Home />
+        <Home setLogin={setLogin} />
       )}
     </div>
-
   );
 };
 
