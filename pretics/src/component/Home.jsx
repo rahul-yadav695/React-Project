@@ -36,7 +36,7 @@ const Home = ({ message, setLogin }) => {
     }
   };
 
-
+ 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
