@@ -37,8 +37,6 @@ const Home = ({ message, setLogin }) => {
   };
 
 
-
-
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -61,9 +59,6 @@ const Home = ({ message, setLogin }) => {
     setLogin(false);
     alert('Log out successfully');
   };
-
-
-
 
   // useEffect=(()=>{
   //   const ubdatecart = JSON.parse(localStorage.getItem("party"))
