@@ -21,8 +21,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path='*' element={<DefaultPage />} />
       <Route path='/login' element={<Form login={login} setLogin={setLogin} />} />
+      <Route path='*' element={<DefaultPage />} />
       <Route path='/home' element={<Home />} />
     </Routes>
 
