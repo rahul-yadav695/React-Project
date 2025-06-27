@@ -59,10 +59,7 @@ const Home = ({ message, setLogin }) => {
     setLogin(false);
     alert('Log out successfully');
   };
-
-  // useEffect=(()=>{
-  //   const ubdatecart = JSON.parse(localStorage.getItem("party"))
-  // },[])
+ 
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
