@@ -17,7 +17,7 @@ const Home = ({ message, setLogin }) => {
 
   ];
 
-
+ 
   const [cart, setcart] = useState([]);
   const [slider, setslider] = useState(false);
   const [slected, setslected] = useState("All")
